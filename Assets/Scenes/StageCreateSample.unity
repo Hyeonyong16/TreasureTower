@@ -296,6 +296,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1833221634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833221635}
+  m_Layer: 0
+  m_Name: StageRooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1833221635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833221634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899085170
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,16 +355,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118d0f2dfe1da394297a3449178c02fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Room1: {fileID: 7255441180469824548, guid: 145381eede835054b9edbedd4ef3a007, type: 3}
-  Room2: {fileID: 1409686977172619984, guid: a28d7e16ee43dc046bf7884b31a74519, type: 3}
-  Room3: {fileID: 4573409963942894978, guid: 240d16c46f9c55c4cb5d855ebdaba409, type: 3}
-  Room4: {fileID: 7197137830400573656, guid: b5bea1b4c0784b24ba0b5788eda9a244, type: 3}
-  StartZone: {fileID: 2908128762240589122, guid: 6afb9facee8d72e40a20b02c3fd3a656,
+  Room1: {fileID: 5463139580376451470, guid: de196e5f3e320fa4db580dca2b16d7b2, type: 3}
+  Room2: {fileID: 5463139580376451470, guid: 3219c9a56b862814987e2cae96c934eb, type: 3}
+  Room3: {fileID: 5463139580376451470, guid: 04e844a08702feb458c887b429ae0411, type: 3}
+  Room4: {fileID: 5463139580376451470, guid: 708f6bc6497369546ba6d8908bcc93bf, type: 3}
+  StartZone: {fileID: 5463139580376451470, guid: af6f8879ba1768f47bcf333d46863dd9,
     type: 3}
-  FinishZone: {fileID: 2908128762240589122, guid: 2716bc3debc3eb6459e208bf0cd2ed68,
+  FinishZone: {fileID: 5463139580376451470, guid: c101e37089418e047bb27d19995cb47e,
     type: 3}
-  Shop: {fileID: 286018578506796678, guid: 60af3afe680da7b4da2d18f93e47e8bb, type: 3}
-  distance: 10
+  Shop: {fileID: 5463139580376451470, guid: 6f00a58c5e4087a4a814fd442caef1b8, type: 3}
+  distance: 25
   stage: 1
   roomSetList: 
   roomPrefabList: []
