@@ -17,6 +17,8 @@ public class EnemyStat : MonoBehaviour
     {
         if(enemyHP <= 0)
         {
+            PlayerAttack playerAttack = GameObject.Find("Player").gameObject.GetComponent<PlayerAttack>();
+            playerAttack.enemyBulletEffect.SetActive(false);
             gameObject.SetActive(false);
         }
     }
