@@ -19,7 +19,7 @@ public class EnemyStat : MonoBehaviour
         {
             PlayerAttack playerAttack = GameObject.Find("Player").gameObject.GetComponent<PlayerAttack>();
             playerAttack.enemyBulletEffect.SetActive(false);
-            gameObject.SetActive(false);
+            Destroy(gameObject, 0.1f);
         }
     }
 }

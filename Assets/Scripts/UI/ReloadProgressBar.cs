@@ -30,7 +30,6 @@ public class ReloadProgressBar : MonoBehaviour
 
         if (reloadProgressBar.value < 1)
         {
-            Debug.Log(time);
             reloadProgressBar.value = (float)time / (float)playerStat.ReloadTime;
         }
     }

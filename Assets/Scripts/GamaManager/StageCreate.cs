@@ -6,6 +6,9 @@ public class StageCreate : MonoBehaviour
 {
     public bool checkTest = false;
 
+    public bool initCheck = false;
+
+    #region RoomObject
     public GameObject StartZone;    //0
     public GameObject Room1;        //1
     public GameObject Room2;        //2
@@ -13,29 +16,63 @@ public class StageCreate : MonoBehaviour
     public GameObject Room4;        //4
     public GameObject Shop;         //5
     public GameObject FinishZone;   //6
+    #endregion
 
     public float distance;
 
     public int stage;
 
-    public int[] roomSetList;  //방목록
-    public GameObject[] roomPrefabList;    //바닥에 깔은 방 프리팹목록
+    public int[] roomSetList;           //방목록
+    public GameObject[] roomPrefabList; //바닥에 깔은 방 프리팹목록
 
-    public Vector2 _PlayerPos;
+    public GameManager gm;
+
+
+    public int startPos;
+    public int finishPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        roomSetList = new int[(stage + 4) * (stage + 4)];
-        roomPrefabList = new GameObject[(stage + 4) * (stage + 4)];
+        gm = gameObject.GetComponent<GameManager>();
+        //roomSetList = new int[(stage + 4) * (stage + 4)];
+        //roomPrefabList = new GameObject[(stage + 4) * (stage + 4)];
 
-        SetStageRoom(Random.Range(0, 10000));
+        //SetStageRoom(Random.Range(0, 10000));
     }
 
     // Update is called once per frame
     void Update()
     {
-        CreatePosRoom(_PlayerPos);
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            stage = gm.stage;
+
+            CreateRoomList();
+            gm.SetSideWall();
+            GameObject.Find("Player").GetComponent<PlayerPosition>().playerPosInit();
+
+
+            initCheck = true;
+        }
+
+        if(initCheck)
+            CreatePosRoom(gm.playerPos);
+    }
+
+    public void CreateRoomList()
+    {
+        foreach(GameObject destroyObject in gm.roomPrefabList)
+        {
+            Destroy(destroyObject);
+        }
+
+        roomSetList = new int[(stage + 4) * (stage + 4)];
+        roomPrefabList = new GameObject[(stage + 4) * (stage + 4)];
+        gm.roomSetList = new int[(stage + 4) * (stage + 4)];
+        gm.roomPrefabList = new GameObject[(stage + 4) * (stage + 4)];
+
+        SetStageRoom(Random.Range(0, 10000));
     }
 
     void SetStageRoom(int seed)
@@ -69,12 +106,18 @@ public class StageCreate : MonoBehaviour
         {
             roomSetList[0] = 0;                                 //시작
             roomSetList[(stage + 4) * (stage + 4) - 1] = 6;     //끝
+
+            startPos = 0;
+            finishPos = (stage + 4) * (stage + 4) - 1;
         }
 
         else
         {
             roomSetList[stage + 3] = 0;                     //시작
             roomSetList[(stage + 4) * (stage + 3)] = 6;     //끝
+
+            startPos = stage + 3;
+            finishPos = (stage + 4) * (stage + 3);
         }
 
         SetRoomList();
@@ -112,9 +155,11 @@ public class StageCreate : MonoBehaviour
                 }
                 roomPrefabList[((stage + 4) * i) + j].transform.SetParent(GameObject.Find("StageRooms").gameObject.transform);
                 roomPrefabList[((stage + 4) * i) + j].SetActive(false);
-
             }
         }
+
+        gm.roomPrefabList = roomPrefabList;
+        gm.roomSetList = roomSetList;
     }
 
     public void CreatePosRoom(Vector2 playerPos)
@@ -172,7 +217,7 @@ public class StageCreate : MonoBehaviour
             }
         }
 
-        else//여기고칠차례
+        else
         {
             if (y == 0)
             {
@@ -200,10 +245,20 @@ public class StageCreate : MonoBehaviour
         for (int i = 0; i < (stage + 4) * (stage + 4); i++)
         {
             if(checkTest)
-                roomPrefabList[i].SetActive(true);
+                gm.roomPrefabList[i].SetActive(true);
 
             else
-                roomPrefabList[i].SetActive(roomActiveCheck[i]);
+                gm.roomPrefabList[i].SetActive(roomActiveCheck[i]);
         }
+    }
+
+    public int GetStartPos()
+    {
+        return startPos;
+    }
+
+    public int GetFinishPos()
+    {
+        return finishPos;
     }
 }
